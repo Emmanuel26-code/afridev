@@ -1,0 +1,17 @@
+# Secrets
+.env
+
+# Fichiers du système et des éditeurs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs et fichiers envoyés par les utilisateurs
+*.log
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Dépendances
+vendor/
+node_modules/
