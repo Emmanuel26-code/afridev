@@ -1,0 +1,36 @@
+:root {
+  --afridev: #0f5132;
+  --afridev-accent: #f4a300;
+}
+
+.bg-afridev { background-color: var(--afridev); }
+.text-afridev { color: var(--afridev); }
+
+.btn-afridev {
+  --bs-btn-bg: var(--afridev);
+  --bs-btn-border-color: var(--afridev);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-bg: #0b3d26;
+  --bs-btn-hover-border-color: #0b3d26;
+  --bs-btn-hover-color: #fff;
+}
+
+.hero { border-left: 6px solid var(--afridev-accent); }
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--afridev);
+  color: #fff;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.auth-card { max-width: 480px; }
+.form-narrow { max-width: 640px; }
+.pre-line { white-space: pre-line; }
+.input-years { width: 6.5rem; }
