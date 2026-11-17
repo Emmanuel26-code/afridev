@@ -21,6 +21,16 @@ CREATE TABLE users (
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
+-- Échecs de connexion (blocage temporaire après 5 échecs). L'email est stocké haché.
+CREATE TABLE login_attempts (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  email_hash CHAR(64) NOT NULL,
+  ip VARCHAR(45) NOT NULL,
+  attempted_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_email (email_hash, attempted_at),
+  INDEX idx_ip (ip, attempted_at)
+) ENGINE=InnoDB;
+
 CREATE TABLE skills (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(80) NOT NULL UNIQUE,
