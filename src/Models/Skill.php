@@ -14,6 +14,14 @@ final class Skill
             ->fetchAll();
     }
 
+    /** Catalogue avec les technologies proches (CODEV). */
+    public function catalogue(): array
+    {
+        return Database::pdo()
+            ->query('SELECT id, nom, categorie, technologies_proches FROM skills ORDER BY id')
+            ->fetchAll();
+    }
+
     /** @return int[] identifiants existants parmi ceux fournis */
     public function existingIds(array $ids): array
     {

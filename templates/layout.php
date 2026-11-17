@@ -33,6 +33,7 @@ $error = Session::pullFlash('error');
       <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
         <li class="nav-item"><a class="nav-link" href="/questions">Questions</a></li>
         <li class="nav-item"><a class="nav-link" href="/projects">Projets</a></li>
+        <li class="nav-item"><a class="nav-link" href="/codev">CODEV</a></li>
         <?php if ($me): ?>
           <li class="nav-item"><a class="nav-link" href="/users/<?= (int) $me['id'] ?>">Mon profil</a></li>
           <li class="nav-item"><a class="nav-link" href="/users/me/skills">Mes compétences</a></li>

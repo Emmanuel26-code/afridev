@@ -53,6 +53,14 @@ final class Project
         return ['items' => $items, 'total' => $total] + $pagination;
     }
 
+    /** Projets d'un membre, pour les listes de choix. */
+    public function forUser(int $userId): array
+    {
+        $stmt = Database::pdo()->prepare('SELECT id, titre FROM projects WHERE user_id = ? ORDER BY created_at DESC');
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll();
+    }
+
     public function find(int $id): ?array
     {
         $stmt = Database::pdo()->prepare(

@@ -185,6 +185,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .display-title {
   text-decoration: none;
 }
 .tag:hover { background: var(--afri-blue); color: #fff; }
+.tag-required { background: #ffe4cc; color: var(--afri-orange-dark); }
+.alert-ai { background: #dbe5ff; border-color: #c3d3ff; color: var(--afri-blue-dark); }
 .btn-pill {
   --bs-btn-padding-y: .2rem;
   --bs-btn-padding-x: .8rem;

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use App\Controllers\AuthController;
 use App\Controllers\HomeController;
+use App\Controllers\NeedController;
 use App\Controllers\ProfileController;
 use App\Controllers\ProjectController;
 use App\Controllers\QuestionController;
@@ -43,5 +44,11 @@ $router->get('/projects/{id}', [ProjectController::class, 'show']);
 $router->get('/projects/{id}/edit', [ProjectController::class, 'edit']);
 $router->post('/projects/{id}/edit', [ProjectController::class, 'update']);
 $router->post('/projects/{id}/delete', [ProjectController::class, 'destroy']);
+
+$router->get('/codev', [NeedController::class, 'index']);
+$router->get('/codev/needs/new', [NeedController::class, 'create']);
+$router->post('/codev/needs/analyze', [NeedController::class, 'analyze']);
+$router->post('/codev/needs', [NeedController::class, 'store']);
+$router->get('/codev/needs/{id}', [NeedController::class, 'show']);
 
 $router->dispatch(Request::method(), Request::path());

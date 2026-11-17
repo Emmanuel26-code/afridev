@@ -32,7 +32,7 @@
   <div class="col-md-4">
     <div class="card h-100"><div class="card-body p-4">
       <span class="feature-icon blue" aria-hidden="true">IA</span>
-      <h3 class="h5">CODEV</h3>
+      <h3 class="h5"><a class="stretched-link text-reset text-decoration-none" href="/codev">CODEV</a></h3>
       <p class="card-text text-body-secondary">Décrivez votre besoin : l'IA recommande les développeurs les plus adaptés, avec une explication.</p>
     </div></div>
   </div>
