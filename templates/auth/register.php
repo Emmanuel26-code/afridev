@@ -4,25 +4,25 @@
     <h1 class="h4 mb-3">Créer mon compte</h1>
     <form method="post" action="/auth/register" novalidate>
       <?= Csrf::field() ?>
-      <div class="mb-3">
-        <label for="nom" class="form-label">Nom complet</label>
-        <input type="text" class="form-control<?= invalid($errors, 'nom') ?>" id="nom" name="nom"
-               value="<?= e($old['nom'] ?? '') ?>" required minlength="2" maxlength="100" autocomplete="name">
-        <?= field_error($errors, 'nom') ?>
-      </div>
-      <div class="mb-3">
-        <label for="pseudo" class="form-label">Pseudo</label>
-        <input type="text" class="form-control<?= invalid($errors, 'pseudo') ?>" id="pseudo" name="pseudo"
-               value="<?= e($old['pseudo'] ?? '') ?>" required minlength="3" maxlength="50"
-               pattern="[A-Za-z0-9_.\-]{3,50}" autocomplete="username">
-        <?= field_error($errors, 'pseudo') ?>
+      <div class="row g-3 mb-3">
+        <div class="col-sm-6">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" class="form-control<?= invalid($errors, 'nom') ?>" id="nom" name="nom"
+                 value="<?= e($old['nom'] ?? '') ?>" required minlength="2" maxlength="100" autocomplete="family-name">
+          <?= field_error($errors, 'nom') ?>
+        </div>
+        <div class="col-sm-6">
+          <label for="prenom" class="form-label">Prénom</label>
+          <input type="text" class="form-control<?= invalid($errors, 'prenom') ?>" id="prenom" name="prenom"
+                 value="<?= e($old['prenom'] ?? '') ?>" required minlength="2" maxlength="100" autocomplete="given-name">
+          <?= field_error($errors, 'prenom') ?>
+        </div>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control<?= invalid($errors, 'email') ?>" id="email" name="email"
                value="<?= e($old['email'] ?? '') ?>" required maxlength="150" autocomplete="email">
         <?= field_error($errors, 'email') ?>
-        <div class="form-text">Jamais affiché publiquement.</div>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Mot de passe</label>

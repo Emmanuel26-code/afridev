@@ -8,7 +8,7 @@ use App\Core\View;
 use App\Models\Skill;
 use App\Models\User;
 
-/** F-105 : profil public (l'email n'est jamais affiché). */
+/** F-105 : profil public. */
 final class UserController
 {
     public function show(int $id): void
@@ -21,7 +21,7 @@ final class UserController
         unset($user['email']);
 
         View::render('users/show', [
-            'title' => $user['pseudo'],
+            'title' => $user['prenom'] . ' ' . $user['nom'],
             'profile' => $user,
             'skills' => (new Skill())->forUser($id),
             'activity' => (new User())->publicActivity($id),

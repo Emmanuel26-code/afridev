@@ -8,16 +8,16 @@ use App\Services\ProfileService;
     <?= Csrf::field() ?>
     <div class="row g-3">
       <div class="col-sm-6">
-        <label for="nom" class="form-label">Nom complet</label>
+        <label for="nom" class="form-label">Nom</label>
         <input type="text" class="form-control<?= invalid($errors, 'nom') ?>" id="nom" name="nom"
-               value="<?= e($old['nom'] ?? '') ?>" required minlength="2" maxlength="100">
+               value="<?= e($old['nom'] ?? '') ?>" required minlength="2" maxlength="100" autocomplete="family-name">
         <?= field_error($errors, 'nom') ?>
       </div>
       <div class="col-sm-6">
-        <label for="pseudo" class="form-label">Pseudo</label>
-        <input type="text" class="form-control<?= invalid($errors, 'pseudo') ?>" id="pseudo" name="pseudo"
-               value="<?= e($old['pseudo'] ?? '') ?>" required maxlength="50" pattern="[A-Za-z0-9_.\-]{3,50}">
-        <?= field_error($errors, 'pseudo') ?>
+        <label for="prenom" class="form-label">Prénom</label>
+        <input type="text" class="form-control<?= invalid($errors, 'prenom') ?>" id="prenom" name="prenom"
+               value="<?= e($old['prenom'] ?? '') ?>" required minlength="2" maxlength="100" autocomplete="given-name">
+        <?= field_error($errors, 'prenom') ?>
       </div>
       <div class="col-12">
         <label for="bio" class="form-label">Bio</label>
@@ -44,7 +44,7 @@ use App\Services\ProfileService;
       <div class="col-12">
         <label for="github_url" class="form-label">Profil GitHub</label>
         <input type="url" class="form-control<?= invalid($errors, 'github_url') ?>" id="github_url" name="github_url"
-               value="<?= e($old['github_url'] ?? '') ?>" maxlength="255" placeholder="https://github.com/pseudo">
+               value="<?= e($old['github_url'] ?? '') ?>" maxlength="255" placeholder="https://github.com/votre-compte">
         <?= field_error($errors, 'github_url') ?>
       </div>
     </div>

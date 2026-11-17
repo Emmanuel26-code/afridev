@@ -19,20 +19,12 @@ final class AuthService
      * F-101 : inscription.
      * @return array{errors: array<string,string>, id: ?int}
      */
-    public function register(string $nom, string $pseudo, string $email, string $password, string $confirmation): array
+    public function register(string $nom, string $prenom, string $email, string $password, string $confirmation): array
     {
         $users = new User();
         $email = mb_strtolower($email);
-        $errors = [];
+        $errors = ProfileService::nameErrors($nom, $prenom);
 
-        if (mb_strlen($nom) < 2 || mb_strlen($nom) > 100) {
-            $errors['nom'] = 'Le nom doit contenir entre 2 et 100 caractères.';
-        }
-        if (!preg_match('/^[A-Za-z0-9_.-]{3,50}$/', $pseudo)) {
-            $errors['pseudo'] = 'Le pseudo doit contenir 3 à 50 caractères : lettres, chiffres, « _ », « . » ou « - ».';
-        } elseif ($users->pseudoTaken($pseudo)) {
-            $errors['pseudo'] = 'Ce pseudo est déjà utilisé.';
-        }
         if (strlen($email) > 150 || filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             $errors['email'] = 'Adresse email invalide.';
         } elseif ($users->emailTaken($email)) {
@@ -49,10 +41,10 @@ final class AuthService
         }
 
         try {
-            $id = $users->create($nom, $pseudo, $email, password_hash($password, PASSWORD_DEFAULT));
+            $id = $users->create($nom, $prenom, $email, password_hash($password, PASSWORD_DEFAULT));
         } catch (\PDOException $e) {
             if ($e->getCode() === '23000') { // doublon créé entre la vérification et l'insertion
-                return ['errors' => ['email' => 'Un compte existe déjà avec cet email ou ce pseudo.'], 'id' => null];
+                return ['errors' => ['email' => 'Un compte existe déjà avec cet email.'], 'id' => null];
             }
             throw $e;
         }

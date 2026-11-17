@@ -20,9 +20,9 @@ final class AuthController
     public function register(): void
     {
         $this->redirectIfLoggedIn();
-        $old = ['nom' => Request::str('nom'), 'pseudo' => Request::str('pseudo'), 'email' => Request::str('email')];
+        $old = ['nom' => Request::str('nom'), 'prenom' => Request::str('prenom'), 'email' => Request::str('email')];
         $result = (new AuthService())->register(
-            $old['nom'], $old['pseudo'], $old['email'],
+            $old['nom'], $old['prenom'], $old['email'],
             Request::raw('password'), Request::raw('password_confirmation')
         );
 

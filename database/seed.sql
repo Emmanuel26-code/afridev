@@ -1,4 +1,5 @@
 -- AFRIDEV : données de démonstration
+SET NAMES utf8mb4;
 USE afridev;
 
 -- Catalogue de compétences (technologies_proches : équivalences utilisées par CODEV)

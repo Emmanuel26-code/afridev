@@ -12,21 +12,26 @@ final class ProfileService
     public const NIVEAUX = [1 => 'Débutant', 2 => 'Intermédiaire', 3 => 'Avancé', 4 => 'Expert'];
     private const MAX_SKILLS = 30;
 
+    /** @return array<string,string> erreurs sur le nom et le prénom */
+    public static function nameErrors(string $nom, string $prenom): array
+    {
+        $errors = [];
+        if (mb_strlen($nom) < 2 || mb_strlen($nom) > 100) {
+            $errors['nom'] = 'Le nom doit contenir entre 2 et 100 caractères.';
+        }
+        if (mb_strlen($prenom) < 2 || mb_strlen($prenom) > 100) {
+            $errors['prenom'] = 'Le prénom doit contenir entre 2 et 100 caractères.';
+        }
+        return $errors;
+    }
+
     /**
      * F-103 : modification du profil.
      * @return array<string,string> erreurs par champ
      */
     public function update(int $userId, array $in): array
     {
-        $errors = [];
-        if (mb_strlen($in['nom']) < 2 || mb_strlen($in['nom']) > 100) {
-            $errors['nom'] = 'Le nom doit contenir entre 2 et 100 caractères.';
-        }
-        if (!preg_match('/^[A-Za-z0-9_.-]{3,50}$/', $in['pseudo'])) {
-            $errors['pseudo'] = 'Le pseudo doit contenir 3 à 50 caractères : lettres, chiffres, « _ », « . » ou « - ».';
-        } elseif ((new User())->pseudoTaken($in['pseudo'], $userId)) {
-            $errors['pseudo'] = 'Ce pseudo est déjà utilisé.';
-        }
+        $errors = self::nameErrors($in['nom'], $in['prenom']);
         if (mb_strlen($in['bio']) > 500) {
             $errors['bio'] = 'La bio ne doit pas dépasser 500 caractères.';
         }
@@ -37,13 +42,13 @@ final class ProfileService
             $errors['disponibilite'] = 'Disponibilité invalide.';
         }
         if ($in['github_url'] !== '' && !preg_match('#^https://github\.com/[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})/?$#', $in['github_url'])) {
-            $errors['github_url'] = 'Indiquez l\'adresse de votre profil, par exemple https://github.com/pseudo.';
+            $errors['github_url'] = 'Indiquez l\'adresse de votre profil, par exemple https://github.com/votre-compte.';
         }
 
         if ($errors === []) {
             (new User())->updateProfile($userId, [
                 'nom' => $in['nom'],
-                'pseudo' => $in['pseudo'],
+                'prenom' => $in['prenom'],
                 'bio' => $in['bio'] === '' ? null : $in['bio'],
                 'pays_ville' => $in['pays_ville'] === '' ? null : $in['pays_ville'],
                 'disponibilite' => $in['disponibilite'],

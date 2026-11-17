@@ -1,4 +1,5 @@
 -- AFRIDEV : schéma de base de données (tâche E2)
+SET NAMES utf8mb4;
 CREATE DATABASE IF NOT EXISTS afridev
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
@@ -8,7 +9,7 @@ USE afridev;
 CREATE TABLE users (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(100) NOT NULL,
-  pseudo VARCHAR(50) NOT NULL UNIQUE,
+  prenom VARCHAR(100) NOT NULL,
   email VARCHAR(150) NOT NULL UNIQUE,
   mot_de_passe_hash VARCHAR(255) NOT NULL,
   bio VARCHAR(500) NULL,

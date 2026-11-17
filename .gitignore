@@ -1,5 +1,6 @@
 # Secrets
 .env
+*.local.txt
 
 # Fichiers du système et des éditeurs
 .DS_Store

@@ -8,7 +8,7 @@ use App\Core\Database;
 final class User
 {
     /** Colonnes sûres : jamais le hash du mot de passe. */
-    private const COLUMNS = 'id, nom, pseudo, email, bio, pays_ville, disponibilite, role, est_bloque, avatar, github_url, created_at';
+    private const COLUMNS = 'id, nom, prenom, email, bio, pays_ville, disponibilite, role, est_bloque, avatar, github_url, created_at';
 
     public function findById(int $id): ?array
     {
@@ -31,29 +31,22 @@ final class User
         return (bool) $stmt->fetchColumn();
     }
 
-    public function pseudoTaken(string $pseudo, ?int $exceptId = null): bool
-    {
-        $stmt = Database::pdo()->prepare('SELECT 1 FROM users WHERE pseudo = ? AND id <> ?');
-        $stmt->execute([$pseudo, $exceptId ?? 0]);
-        return (bool) $stmt->fetchColumn();
-    }
-
-    public function create(string $nom, string $pseudo, string $email, string $hash): int
+    public function create(string $nom, string $prenom, string $email, string $hash): int
     {
         $stmt = Database::pdo()->prepare(
-            'INSERT INTO users (nom, pseudo, email, mot_de_passe_hash) VALUES (?, ?, ?, ?)'
+            'INSERT INTO users (nom, prenom, email, mot_de_passe_hash) VALUES (?, ?, ?, ?)'
         );
-        $stmt->execute([$nom, $pseudo, $email, $hash]);
+        $stmt->execute([$nom, $prenom, $email, $hash]);
         return (int) Database::pdo()->lastInsertId();
     }
 
     public function updateProfile(int $id, array $data): void
     {
         $stmt = Database::pdo()->prepare(
-            'UPDATE users SET nom = ?, pseudo = ?, bio = ?, pays_ville = ?, disponibilite = ?, github_url = ? WHERE id = ?'
+            'UPDATE users SET nom = ?, prenom = ?, bio = ?, pays_ville = ?, disponibilite = ?, github_url = ? WHERE id = ?'
         );
         $stmt->execute([
-            $data['nom'], $data['pseudo'], $data['bio'], $data['pays_ville'],
+            $data['nom'], $data['prenom'], $data['bio'], $data['pays_ville'],
             $data['disponibilite'], $data['github_url'], $id,
         ]);
     }

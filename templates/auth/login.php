@@ -17,6 +17,6 @@
       </div>
       <button type="submit" class="btn btn-afridev w-100">Se connecter</button>
     </form>
-    <p class="mt-3 mb-0 text-center small">Pas encore de compte ? <a href="/auth/register">S'inscrire</a></p>
+    <p class="mt-3 mb-0 text-center small">Pas de compte ? <a href="/auth/register">S'inscrire</a></p>
   </div>
 </div>

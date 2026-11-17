@@ -5,11 +5,11 @@ $statuts = ['idee' => 'Idée', 'en_cours' => 'En cours', 'termine' => 'Terminé'
 $counts = $activity['counts'];
 ?>
 <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
-  <div class="avatar" aria-hidden="true"><?= e(mb_strtoupper(mb_substr($profile['pseudo'], 0, 1))) ?></div>
+  <div class="avatar" aria-hidden="true"><?= e(mb_strtoupper(mb_substr($profile['prenom'], 0, 1) . mb_substr($profile['nom'], 0, 1))) ?></div>
   <div class="flex-grow-1">
-    <h1 class="h3 mb-0"><?= e($profile['nom']) ?></h1>
-    <div class="text-body-secondary">@<?= e($profile['pseudo']) ?><?= $profile['pays_ville'] ? ' · ' . e($profile['pays_ville']) : '' ?></div>
-    <span class="badge <?= $profile['disponibilite'] === 'disponible' ? 'text-bg-success' : 'text-bg-secondary' ?>">
+    <h1 class="h3 mb-0"><?= e($profile['prenom'] . ' ' . $profile['nom']) ?></h1>
+    <?php if ($profile['pays_ville']): ?><div class="text-body-secondary"><?= e($profile['pays_ville']) ?></div><?php endif; ?>
+    <span class="badge <?= $profile['disponibilite'] === 'disponible' ? 'badge-dispo' : 'badge-occupe' ?>">
       <?= e(ProfileService::DISPONIBILITES[$profile['disponibilite']]) ?>
     </span>
     <?php if ($profile['github_url']): ?>
@@ -37,7 +37,7 @@ $counts = $activity['counts'];
                 <small class="text-body-secondary">· <?= (int) $skill['annees_experience'] ?> an(s)</small>
               <?php endif; ?>
             </span>
-            <span class="badge text-bg-light border"><?= e(ProfileService::NIVEAUX[(int) $skill['niveau']]) ?></span>
+            <span class="badge badge-niveau"><?= e(ProfileService::NIVEAUX[(int) $skill['niveau']]) ?></span>
           </li>
         <?php endforeach; ?>
       </ul>

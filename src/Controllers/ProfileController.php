@@ -24,7 +24,7 @@ final class ProfileController
         $user = Auth::requireLogin();
         $in = [
             'nom' => Request::str('nom'),
-            'pseudo' => Request::str('pseudo'),
+            'prenom' => Request::str('prenom'),
             'bio' => Request::str('bio'),
             'pays_ville' => Request::str('pays_ville'),
             'disponibilite' => Request::str('disponibilite'),

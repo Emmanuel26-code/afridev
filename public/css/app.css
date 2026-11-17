@@ -1,34 +1,173 @@
 :root {
-  --afridev: #0f5132;
-  --afridev-accent: #f4a300;
+  --afri-blue: #1d4ed8;
+  --afri-blue-dark: #1e3a8a;
+  --afri-orange: #f97316;
+  --afri-orange-dark: #ea580c;
+  --afri-cream: #fbf6ec;
+  --afri-cream-deep: #f3ead8;
+  --afri-ink: #14213d;
+  --afri-card: #fffdf8;
+  --afri-line: #eadfca;
+
+  --bs-body-bg: var(--afri-cream);
+  --bs-body-color: var(--afri-ink);
+  --bs-body-font-family: 'Geist Variable', system-ui, sans-serif;
+  --bs-secondary-color: #5b6478;
+  --bs-border-color: var(--afri-line);
+  --bs-link-color: var(--afri-blue);
+  --bs-link-color-rgb: 29, 78, 216;
+  --bs-link-hover-color: var(--afri-orange-dark);
+  --bs-link-hover-color-rgb: 234, 88, 12;
+  --bs-primary-rgb: 29, 78, 216;
+  --bs-border-radius: .75rem;
+  --bs-border-radius-lg: 1.25rem;
+  --bs-focus-ring-color: rgba(249, 115, 22, .25);
 }
 
-.bg-afridev { background-color: var(--afridev); }
-.text-afridev { color: var(--afridev); }
+h1, h2, h3, h4, h5, h6, .navbar-brand, .display-title {
+  font-family: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
 
+/* Barre de navigation flottante en pilule */
+.nav-float {
+  margin: 1rem auto 0;
+  max-width: 1140px;
+  width: calc(100% - 2rem);
+  background: rgba(255, 253, 248, .85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--afri-line);
+  border-radius: 2rem;
+  box-shadow: 0 8px 24px rgba(20, 33, 61, .06);
+}
+.nav-float.sticky-top { top: 1rem; }
+@media (min-width: 1200px) { .container { max-width: 1140px; } }
+.nav-float .nav-link { color: var(--afri-ink); font-weight: 500; }
+.nav-float .nav-link:hover { color: var(--afri-orange-dark); }
+.brand-mark {
+  width: 2rem;
+  height: 2rem;
+  border-radius: .6rem;
+  background: var(--afri-ink);
+  color: var(--afri-orange);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.text-afridev { color: var(--afri-blue); }
+.text-accent { color: var(--afri-orange); }
+
+/* Boutons en pilule */
+.btn { border-radius: 999px; font-weight: 600; padding-inline: 1.25rem; }
+.btn-sm { padding-inline: .9rem; }
 .btn-afridev {
-  --bs-btn-bg: var(--afridev);
-  --bs-btn-border-color: var(--afridev);
+  --bs-btn-bg: var(--afri-blue);
+  --bs-btn-border-color: var(--afri-blue);
   --bs-btn-color: #fff;
-  --bs-btn-hover-bg: #0b3d26;
-  --bs-btn-hover-border-color: #0b3d26;
+  --bs-btn-hover-bg: var(--afri-blue-dark);
+  --bs-btn-hover-border-color: var(--afri-blue-dark);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: var(--afri-blue-dark);
+  --bs-btn-active-border-color: var(--afri-blue-dark);
+}
+.btn-accent {
+  --bs-btn-bg: var(--afri-orange);
+  --bs-btn-border-color: var(--afri-orange);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-bg: var(--afri-orange-dark);
+  --bs-btn-hover-border-color: var(--afri-orange-dark);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: var(--afri-orange-dark);
+  --bs-btn-active-border-color: var(--afri-orange-dark);
+}
+.btn-ink {
+  --bs-btn-bg: var(--afri-ink);
+  --bs-btn-border-color: var(--afri-ink);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-bg: #000;
+  --bs-btn-hover-border-color: #000;
   --bs-btn-hover-color: #fff;
 }
+.btn-outline-secondary {
+  --bs-btn-color: var(--afri-ink);
+  --bs-btn-border-color: var(--afri-line);
+  --bs-btn-hover-bg: var(--afri-cream-deep);
+  --bs-btn-hover-border-color: var(--afri-line);
+  --bs-btn-hover-color: var(--afri-ink);
+}
 
-.hero { border-left: 6px solid var(--afridev-accent); }
+/* Cartes blanches arrondies */
+.card {
+  --bs-card-bg: var(--afri-card);
+  --bs-card-border-color: var(--afri-line);
+  --bs-card-border-radius: 1.25rem;
+  --bs-card-cap-bg: var(--afri-cream-deep);
+  box-shadow: 0 10px 30px rgba(20, 33, 61, .05);
+}
+.list-group { --bs-list-group-bg: var(--afri-card); --bs-list-group-border-color: var(--afri-line); }
+.feature-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: .9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.feature-icon.blue { background: #dbe5ff; color: var(--afri-blue); }
+.feature-icon.orange { background: #ffe4cc; color: var(--afri-orange-dark); }
+
+/* Hero : grand titre serré, fond à points */
+.hero {
+  padding: 4rem 1rem 3rem;
+  text-align: center;
+  background-image: radial-gradient(rgba(20, 33, 61, .12) 1px, transparent 1px);
+  background-size: 22px 22px;
+  border-radius: 1.5rem;
+}
+.hero h1 { font-size: clamp(2.2rem, 6vw, 4.2rem); line-height: 1.02; letter-spacing: -.04em; }
+.hero .lead { max-width: 640px; margin-inline: auto; color: var(--bs-secondary-color); }
+.eyebrow {
+  display: inline-block;
+  padding: .3rem .9rem;
+  border-radius: 999px;
+  background: var(--afri-card);
+  border: 1px solid var(--afri-line);
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--afri-orange-dark);
+}
+
+/* Formulaires */
+.form-control, .form-select { background-color: #fff; border-color: var(--afri-line); border-radius: .75rem; }
+.form-control:focus, .form-select:focus { border-color: var(--afri-orange); box-shadow: 0 0 0 .25rem rgba(249, 115, 22, .2); }
+.form-check-input:checked { background-color: var(--afri-orange); border-color: var(--afri-orange); }
+.form-check-input:focus { border-color: var(--afri-orange); box-shadow: 0 0 0 .25rem rgba(249, 115, 22, .2); }
+
+.badge { border-radius: 999px; font-weight: 600; }
+.badge-dispo { background: #ffe4cc; color: var(--afri-orange-dark); }
+.badge-occupe { background: var(--afri-cream-deep); color: #5b6478; }
+.badge-niveau { background: #dbe5ff; color: var(--afri-blue); }
 
 .avatar {
   width: 96px;
   height: 96px;
-  border-radius: 50%;
-  background: var(--afridev);
+  border-radius: 1.75rem;
+  background: var(--afri-blue);
   color: #fff;
+  font-family: 'Bricolage Grotesque Variable', system-ui, sans-serif;
   font-size: 2.5rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
+
+.site-footer { border-top: 1px solid var(--afri-line); }
 
 .auth-card { max-width: 480px; }
 .form-narrow { max-width: 640px; }
