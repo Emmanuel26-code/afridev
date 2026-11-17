@@ -171,5 +171,42 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .display-title {
 
 .auth-card { max-width: 480px; }
 .form-narrow { max-width: 640px; }
+.form-wide { max-width: 860px; }
+
+/* Tags et pastilles de sélection */
+.tag {
+  display: inline-block;
+  padding: .2rem .7rem;
+  border-radius: 999px;
+  background: #dbe5ff;
+  color: var(--afri-blue);
+  font-size: .8rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.tag:hover { background: var(--afri-blue); color: #fff; }
+.btn-pill {
+  --bs-btn-padding-y: .2rem;
+  --bs-btn-padding-x: .8rem;
+  --bs-btn-font-size: .85rem;
+  --bs-btn-font-weight: 500;
+  --bs-btn-color: var(--afri-ink);
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: var(--afri-line);
+  --bs-btn-hover-bg: var(--afri-cream-deep);
+  --bs-btn-hover-border-color: var(--afri-line);
+  --bs-btn-active-bg: var(--afri-orange);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-border-color: var(--afri-orange);
+}
+.btn-check:checked + .btn-pill { background: var(--afri-orange); border-color: var(--afri-orange); color: #fff; }
+.btn-check:focus-visible + .btn-pill { box-shadow: 0 0 0 .25rem rgba(249, 115, 22, .3); }
+
+.badge-statut-idee { background: var(--afri-cream-deep); color: #5b6478; }
+.badge-statut-en_cours { background: #dbe5ff; color: var(--afri-blue); }
+.badge-statut-termine { background: #ffe4cc; color: var(--afri-orange-dark); }
+.answer-accepted { border: 2px solid var(--afri-orange); }
+.clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.pagination { --bs-pagination-color: var(--afri-blue); --bs-pagination-border-color: var(--afri-line); --bs-pagination-bg: var(--afri-card); }
 .pre-line { white-space: pre-line; }
 .input-years { width: 6.5rem; }

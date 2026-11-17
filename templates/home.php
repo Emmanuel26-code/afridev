@@ -18,14 +18,14 @@
   <div class="col-md-4">
     <div class="card h-100"><div class="card-body p-4">
       <span class="feature-icon blue" aria-hidden="true">?</span>
-      <h3 class="h5">Entraide</h3>
+      <h3 class="h5"><a class="stretched-link text-reset text-decoration-none" href="/questions">Entraide</a></h3>
       <p class="card-text text-body-secondary">Posez vos questions techniques et répondez à celles de la communauté.</p>
     </div></div>
   </div>
   <div class="col-md-4">
     <div class="card h-100"><div class="card-body p-4">
       <span class="feature-icon orange" aria-hidden="true">&lt;/&gt;</span>
-      <h3 class="h5">Projets</h3>
+      <h3 class="h5"><a class="stretched-link text-reset text-decoration-none" href="/projects">Projets</a></h3>
       <p class="card-text text-body-secondary">Publiez vos projets avec leurs technologies, leur dépôt Git et leur démo.</p>
     </div></div>
   </div>

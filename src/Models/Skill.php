@@ -37,6 +37,37 @@ final class Skill
         return $stmt->fetchAll();
     }
 
+    /** @param int[] $ids @return array<int, array> tags groupés par question */
+    public function forQuestions(array $ids): array
+    {
+        return $this->grouped('question_tags', 'question_id', $ids);
+    }
+
+    /** @param int[] $ids @return array<int, array> technologies groupées par projet */
+    public function forProjects(array $ids): array
+    {
+        return $this->grouped('project_skills', 'project_id', $ids);
+    }
+
+    /** $table et $column sont des constantes internes, jamais des saisies. */
+    private function grouped(string $table, string $column, array $ids): array
+    {
+        if ($ids === []) {
+            return [];
+        }
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+        $stmt = Database::pdo()->prepare(
+            "SELECT l.$column AS owner_id, s.id, s.nom FROM $table l JOIN skills s ON s.id = l.skill_id
+             WHERE l.$column IN ($placeholders) ORDER BY s.nom"
+        );
+        $stmt->execute(array_map('intval', array_values($ids)));
+        $grouped = [];
+        foreach ($stmt->fetchAll() as $row) {
+            $grouped[(int) $row['owner_id']][] = ['id' => (int) $row['id'], 'nom' => $row['nom']];
+        }
+        return $grouped;
+    }
+
     /** Remplace toutes les compétences d'un membre (transaction). */
     public function replaceForUser(int $userId, array $rows): void
     {

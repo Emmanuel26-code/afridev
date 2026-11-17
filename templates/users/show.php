@@ -56,7 +56,7 @@ $counts = $activity['counts'];
     <?php if ($activity['projects']): ?>
       <ul class="list-unstyled">
         <?php foreach ($activity['projects'] as $project): ?>
-          <li><?= e($project['titre']) ?> <span class="badge text-bg-light border"><?= e($statuts[$project['statut']]) ?></span></li>
+          <li><a href="/projects/<?= (int) $project['id'] ?>"><?= e($project['titre']) ?></a> <span class="badge text-bg-light border"><?= e($statuts[$project['statut']]) ?></span></li>
         <?php endforeach; ?>
       </ul>
     <?php else: ?>

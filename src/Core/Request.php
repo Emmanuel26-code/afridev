@@ -40,6 +40,32 @@ final class Request
         return is_string($value) && mb_check_encoding($value, 'UTF-8') ? $value : '';
     }
 
+    /** Paramètre GET texte, nettoyé et limité à $max caractères. */
+    public static function query(string $key, int $max = 100): string
+    {
+        $value = $_GET[$key] ?? '';
+        return is_string($value) && mb_check_encoding($value, 'UTF-8') ? mb_substr(trim($value), 0, $max) : '';
+    }
+
+    /** Paramètre GET entier positif, 0 sinon. */
+    public static function queryInt(string $key): int
+    {
+        $value = $_GET[$key] ?? '';
+        return is_string($value) && preg_match('/^[1-9]\d{0,8}$/', $value) ? (int) $value : 0;
+    }
+
+    /** Identifiants entiers positifs uniques envoyés en POST (cases à cocher). @return int[] */
+    public static function ids(string $key): array
+    {
+        $ids = [];
+        foreach (self::arr($key) as $value) {
+            if (is_string($value) && preg_match('/^[1-9]\d{0,8}$/', $value)) {
+                $ids[(int) $value] = (int) $value;
+            }
+        }
+        return array_values($ids);
+    }
+
     public static function arr(string $key): array
     {
         $value = $_POST[$key] ?? [];
